@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import styles from '../styles/QuestionPage.module.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import axios from 'axios';
-import { useRouter } from 'next/router';
 
 const QuestionPage = () => {
   const [question, setQuestion] = useState(null);
@@ -10,7 +10,8 @@ const QuestionPage = () => {
   const [loading, setLoading] = useState(true);
   const [answerContent, setAnswerContent] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const router = useRouter();
+  const [likedAnswers, setLikedAnswers] = useState([]);
+  const [dislikedAnswers, setDislikedAnswers] = useState([]);
 
   useEffect(() => {
     const selectedQuestionId = localStorage.getItem('selectedQuestionId');
@@ -110,6 +111,30 @@ const QuestionPage = () => {
     }
   };
 
+  const handleLikeAnswer = (answerId) => {
+    setLikedAnswers((prevLikedAnswers) => {
+      if (prevLikedAnswers.includes(answerId)) {
+        return prevLikedAnswers.filter((id) => id !== answerId);
+      } else {
+        return [...prevLikedAnswers, answerId];
+      }
+    });
+
+    setDislikedAnswers((prevDislikedAnswers) => prevDislikedAnswers.filter((id) => id !== answerId));
+  };
+
+  const handleDislikeAnswer = (answerId) => {
+    setDislikedAnswers((prevDislikedAnswers) => {
+      if (prevDislikedAnswers.includes(answerId)) {
+        return prevDislikedAnswers.filter((id) => id !== answerId);
+      } else {
+        return [...prevDislikedAnswers, answerId];
+      }
+    });
+
+    setLikedAnswers((prevLikedAnswers) => prevLikedAnswers.filter((id) => id !== answerId));
+  };
+
   useEffect(() => {
     return () => {
       localStorage.removeItem('selectedQuestionId');
@@ -119,7 +144,7 @@ const QuestionPage = () => {
   return (
     <>
       <Navbar />
-      <div>
+      <div className={styles.container}>
         {loading ? (
           <p>Loading question...</p>
         ) : question ? (
@@ -138,7 +163,17 @@ const QuestionPage = () => {
             answers.map((answer) => (
               <div key={answer.id}>
                 <p>{answer.content}</p>
-                <button onClick={() => handleDeleteAnswer(answer.id)}>Delete Answer</button>
+                <div className={styles.actions}>
+                  <button className={likedAnswers.includes(answer.id) ? styles.likedButton : styles.button} onClick={() => handleLikeAnswer(answer.id)}>
+                    Like
+                  </button>
+                  <button className={dislikedAnswers.includes(answer.id) ? styles.dislikedButton : styles.button} onClick={() => handleDislikeAnswer(answer.id)}>
+                    Dislike
+                  </button>
+                  <button className={styles.deleteButton} onClick={() => handleDeleteAnswer(answer.id)}>
+                    Delete Answer
+                  </button>
+                </div>
               </div>
             ))
           ) : (
