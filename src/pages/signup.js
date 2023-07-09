@@ -23,7 +23,10 @@ const Signup = () => {
       if (response.ok) {
         // Signup successful
         const { jwt, refreshToken } = data;
-        // Save the tokens or perform any necessary actions
+
+        // Save the tokens to local storage
+        localStorage.setItem('jwt', jwt);
+        localStorage.setItem('refreshToken', refreshToken);
 
         // Display success message
         setError('Signup successful');

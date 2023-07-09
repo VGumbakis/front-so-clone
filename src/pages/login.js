@@ -1,4 +1,6 @@
+// Login.js
 import { useState } from 'react';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 
 const Login = () => {
@@ -9,20 +11,20 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:8080/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
+      const response = await axios.post('http://localhost:8080/login', {
+        email,
+        password,
       });
 
-      const data = await response.json();
+      const data = response.data;
 
-      if (response.ok) {
+      if (response.status === 200) {
         // Login successful
         const { jwt, refreshToken } = data;
-        // Save the tokens or perform any necessary actions
+
+        // Save the tokens to local storage
+        localStorage.setItem('jwt', jwt);
+        localStorage.setItem('refreshToken', refreshToken);
 
         // Display success message
         setError('Login successful');

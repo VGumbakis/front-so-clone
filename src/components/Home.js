@@ -18,6 +18,7 @@ const Home = () => {
       } catch (error) {
         console.log('Error fetching questions:', error);
         setLoading(false);
+        // Handle the error here (e.g., display an error message)
       }
     };
 
