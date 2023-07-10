@@ -87,19 +87,27 @@ const LoginOrSignup = () => {
   return (
     <>
       <Navbar />
-      <div>
-        <h1>Login</h1>
-        {loginError && <p>{loginError}</p>}
-        <input type="email" placeholder="Email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
-        <input type="password" placeholder="Password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
-        <button onClick={handleLogin}>Login</button>
+      <div className={styles.container}>
+        <div className={styles.form}>
+          <h1>Login</h1>
+          {loginError && <p>{loginError}</p>}
+          <input type="email" placeholder="Email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
+          <input type="password" placeholder="Password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
+          <button onClick={handleLogin} className={styles.button}>
+            Login
+          </button>
+        </div>
 
-        <h1>Signup</h1>
-        {signupError && <p>{signupError}</p>}
-        <input type="text" placeholder="Name" value={signupName} onChange={(e) => setSignupName(e.target.value)} />
-        <input type="email" placeholder="Email" value={signupEmail} onChange={(e) => setSignupEmail(e.target.value)} />
-        <input type="password" placeholder="Password" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} />
-        <button onClick={handleSignup}>Signup</button>
+        <div className={styles.form}>
+          <h1>Signup</h1>
+          {signupError && <p>{signupError}</p>}
+          <input type="text" placeholder="Name" value={signupName} onChange={(e) => setSignupName(e.target.value)} />
+          <input type="email" placeholder="Email" value={signupEmail} onChange={(e) => setSignupEmail(e.target.value)} />
+          <input type="password" placeholder="Password" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} />
+          <button onClick={handleSignup} className={styles.button}>
+            Signup
+          </button>
+        </div>
       </div>
       <Footer />
     </>

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import styles from '../styles/QuestionPage.module.css';
+import { useRouter } from 'next/router';
+import styles from '../styles/Question.module.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 const QuestionPage = () => {
+  const router = useRouter();
   const [question, setQuestion] = useState(null);
   const [answers, setAnswers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -63,7 +65,6 @@ const QuestionPage = () => {
         },
       });
       console.log('Answer deleted successfully');
-      // Refresh answers
       const selectedQuestionId = localStorage.getItem('selectedQuestionId');
       const answersResponse = await axios.get(`http://localhost:8080/question/${selectedQuestionId}/answers`, {
         headers: {
@@ -148,29 +149,29 @@ const QuestionPage = () => {
         {loading ? (
           <p>Loading question...</p>
         ) : question ? (
-          <div>
-            <h3>{question.title}</h3>
-            <p>{question.content}</p>
-            <button onClick={handleDeleteQuestion}>Delete Question</button>
+          <div className={styles.question}>
+            <h3 className={styles.title}>{question.title}</h3>
+            <p className={styles.content}>{question.content}</p>
+            <button className={`${styles.button} questionbtn`} onClick={handleDeleteQuestion}>
+              Delete Question
+            </button>
           </div>
         ) : (
           <p>No question found.</p>
         )}
 
-        <div>
-          <h4>Answers:</h4>
+        <div className={styles.answerSection}>
+          <h4 className={styles.answers}>Answers:</h4>
           {answers.length > 0 ? (
             answers.map((answer) => (
-              <div key={answer.id}>
+              <div className={styles.answer} key={answer.id}>
                 <p>{answer.content}</p>
                 <div className={styles.actions}>
-                  <button className={likedAnswers.includes(answer.id) ? styles.likedButton : styles.button} onClick={() => handleLikeAnswer(answer.id)}>
-                    Like
-                  </button>
+                  <button className={likedAnswers.includes(answer.id) ? styles.likedButton : styles.button} onClick={() => handleLikeAnswer(answer.id)}></button>
                   <button className={dislikedAnswers.includes(answer.id) ? styles.dislikedButton : styles.button} onClick={() => handleDislikeAnswer(answer.id)}>
                     Dislike
                   </button>
-                  <button className={styles.deleteButton} onClick={() => handleDeleteAnswer(answer.id)}>
+                  <button className={styles.button} onClick={() => handleDeleteAnswer(answer.id)}>
                     Delete Answer
                   </button>
                 </div>
@@ -181,9 +182,11 @@ const QuestionPage = () => {
           )}
         </div>
 
-        <form onSubmit={handleAnswerSubmit}>
+        <form className={styles.form} onSubmit={handleAnswerSubmit}>
           <textarea value={answerContent} onChange={(e) => setAnswerContent(e.target.value)} placeholder="Write your answer" required></textarea>
-          <button type="submit">Leave Answer</button>
+          <button className={styles.button} type="submit">
+            Leave Answer
+          </button>
           {errorMessage && <p>{errorMessage}</p>}
         </form>
       </div>

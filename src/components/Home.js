@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import styles from '../styles/index.module.css';
+import styles from '../styles/Home.module.css';
 import { useRouter } from 'next/router';
 
 const Home = () => {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState('all'); // New state for filter selection
+  const [filter, setFilter] = useState('all');
   const router = useRouter();
 
   useEffect(() => {
@@ -19,7 +19,6 @@ const Home = () => {
       } catch (error) {
         console.log('Error fetching questions:', error);
         setLoading(false);
-        // Handle the error here (e.g., display an error message)
       }
     };
 
@@ -49,7 +48,7 @@ const Home = () => {
 
   return (
     <div>
-      <div>
+      <div className={styles.form}>
         <label htmlFor="filter">Filter:</label>
         <select id="filter" value={filter} onChange={handleFilterChange}>
           <option value="all">All Questions</option>
@@ -65,8 +64,8 @@ const Home = () => {
           <>
             {filteredQuestions.map((question) => (
               <div className={styles.question} key={question.id} onClick={() => handleQuestionClick(question.id)}>
-                <h3>{question.title}</h3>
-                <p>{question.content}</p>
+                <h3 className={styles.title}>{question.title}</h3>
+                <p className={styles.content}>{question.content}</p>
               </div>
             ))}
           </>

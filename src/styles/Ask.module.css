@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+
+.title {
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  align-self: center;
+}
+
+.button {
+  border-radius: 20px;
+}

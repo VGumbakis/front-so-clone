@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+@media screen and (max-width: 520px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .form {
+    margin-bottom: 60px;
+  }
+}
+
+.button {
+  border-radius: 20px;
+}

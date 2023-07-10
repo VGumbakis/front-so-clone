@@ -5,8 +5,8 @@ const Navbar = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.logo}>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Wv_logo_proposal_flying_plane_wo_contrails.png" className={styles.image} />
-        <h3 className={styles.heading}>Your destinations</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Emblem-question-red.svg" className={styles.image} />
+        <h3 className={styles.heading}>ASK AND GET ANSWERS</h3>
       </div>
       <ul className={styles.list}>
         <li>

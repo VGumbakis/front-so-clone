@@ -12,8 +12,6 @@
 }
 
 .image {
-  width: 30px;
-  height: 30px;
   margin-left: 20px;
 }
 
@@ -52,5 +50,21 @@
     align-items: center;
     margin-bottom: 40px;
     justify-content: space-around;
+    gap: 30px;
+  }
+  .nav {
+    padding-bottom: 30px;
+  }
+  .heading {
+    margin-bottom: 30px;
+  }
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .image {
+    margin-left: 50px;
+    margin-top: 20px;
   }
 }

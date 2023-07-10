@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import axios from 'axios';
+import styles from '../styles/Ask.module.css';
 
 const Ask = () => {
   const [title, setTitle] = useState('');
@@ -15,7 +16,7 @@ const Ask = () => {
     event.preventDefault();
 
     try {
-      const token = localStorage.getItem('jwt'); // Retrieve the token from local storage
+      const token = localStorage.getItem('jwt');
 
       const response = await axios.post(
         'http://localhost:8080/question',
@@ -48,8 +49,9 @@ const Ask = () => {
     <>
       <Navbar />
 
-      <div>
-        <form onSubmit={handleSubmit}>
+      <div className={styles.container}>
+        <h3 className={styles.title}>Ask question</h3>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <label htmlFor="title">Question Name:</label>
           <input type="text" id="title" value={title} onChange={(event) => setTitle(event.target.value)} required />
           <br />
@@ -58,7 +60,7 @@ const Ask = () => {
           <textarea id="content" value={content} onChange={(event) => setContent(event.target.value)} required></textarea>
           <br />
 
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" className={styles.button} />
         </form>
 
         {successMessage && <div>{successMessage}</div>}
