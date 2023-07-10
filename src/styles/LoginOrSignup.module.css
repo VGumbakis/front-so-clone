@@ -10,6 +10,23 @@
   align-items: center;
 }
 
+.button {
+  border-radius: 20px;
+  color: white;
+  background-color: darkcyan;
+  transition: all 0.5s;
+  padding: 5px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+  background-color: olivedrab;
+  color: lightyellow;
+  transition: all 0.5s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
 @media screen and (max-width: 520px) {
   .container {
     flex-direction: column;
@@ -18,8 +35,4 @@
   .form {
     margin-bottom: 60px;
   }
-}
-
-.button {
-  border-radius: 20px;
 }

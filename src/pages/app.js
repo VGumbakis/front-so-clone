@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 
-const MyApp = ({ Component, pageProps }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+import '../styles/globals.css';
 
-  return (
-    <div>
-      <Navbar isLoggedIn={isLoggedIn} />
-      <Component {...pageProps} />
-    </div>
-  );
-};
+function MyApp({ Component, pageProps }) {}
 
 export default MyApp;

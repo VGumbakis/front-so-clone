@@ -167,7 +167,9 @@ const QuestionPage = () => {
               <div className={styles.answer} key={answer.id}>
                 <p>{answer.content}</p>
                 <div className={styles.actions}>
-                  <button className={likedAnswers.includes(answer.id) ? styles.likedButton : styles.button} onClick={() => handleLikeAnswer(answer.id)}></button>
+                  <button className={likedAnswers.includes(answer.id) ? styles.likedButton : styles.button} onClick={() => handleLikeAnswer(answer.id)}>
+                    Like
+                  </button>
                   <button className={dislikedAnswers.includes(answer.id) ? styles.dislikedButton : styles.button} onClick={() => handleDislikeAnswer(answer.id)}>
                     Dislike
                   </button>
@@ -183,6 +185,7 @@ const QuestionPage = () => {
         </div>
 
         <form className={styles.form} onSubmit={handleAnswerSubmit}>
+          <h3>Your answer:</h3>
           <textarea value={answerContent} onChange={(e) => setAnswerContent(e.target.value)} placeholder="Write your answer" required></textarea>
           <button className={styles.button} type="submit">
             Leave Answer

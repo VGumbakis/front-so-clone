@@ -3,25 +3,16 @@
 }
 
 .question {
-  border: 1px solid grey;
+  border: 3px solid grey;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
 }
 
 .title {
   border-bottom: 1px solid grey;
-}
-
-.questionbtn {
-  background-color: red;
-}
-
-.answsection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .answers {
@@ -31,13 +22,21 @@
 .answer {
   border: 1px solid grey;
   border-radius: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  margin: 50px;
   justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 100px;
 }
 
 .actions {
@@ -45,17 +44,20 @@
 }
 
 .button {
+  border-radius: 20px;
+  color: white;
+  background-color: darkcyan;
+  transition: all 0.5s;
   padding: 5px 10px;
-  background-color: #fff;
-  color: #333;
-  border: 1px solid #333;
-  border-radius: 20px; /* Added border-radius property */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .button:hover {
-  background-color: #f2f2f2;
+  background-color: olivedrab;
+  color: lightyellow;
+  transition: all 0.5s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .likedButton {
